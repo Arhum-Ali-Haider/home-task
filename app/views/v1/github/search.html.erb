@@ -1,0 +1,18 @@
+<h1>Github Repository Search</h1>
+
+<%= form_tag v1_github_search_path, method: :get do %>
+  <%= text_field_tag :q, params[:q], placeholder: "Search Github Repositories" %>
+  <%= submit_tag "Search" %>
+<% end %>
+<% if @results.present? %>
+  <% if @results[:items].present? %>
+    <p>Search results for "<%= @query %>":</p>
+    <ul>
+      <% @results[:items].each do |item| %>
+        <li><%= link_to item['name'], item["owner"]["url"] %></li>
+      <% end %>
+    </ul>
+  <%  else %>
+    <p>No results found.</p>
+  <% end %>
+<% end %>

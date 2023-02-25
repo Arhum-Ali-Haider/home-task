@@ -9,7 +9,7 @@
     <p>Search results for "<%= @query %>":</p>
     <ul>
       <% @results[:items].each do |item| %>
-        <li><%= link_to item['name'], item["owner"]["url"] %></li>
+        <li><%= link_to item['name'], item["html_url"] %></li>
       <% end %>
     </ul>
   <%  else %>

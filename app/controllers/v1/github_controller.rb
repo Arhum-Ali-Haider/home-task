@@ -9,7 +9,7 @@ class V1::GithubController <  ApplicationController
   private
 
   def github_search(q)
-    Github::V1::Repositories::ListMatchedRepos.get_user_repositories(q)
+    Github::V1::Repositories::ListMatchedRepos.get_user_repositories(q) #service to get matching github repos
   end
 
 end

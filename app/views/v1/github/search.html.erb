@@ -1,5 +1,4 @@
 <h1>Github Repository Search</h1>
-
 <%= form_tag v1_github_search_path, method: :get do %>
   <%= text_field_tag :q, params[:q], placeholder: "Search Github Repositories" %>
   <%= submit_tag "Search" %>
@@ -12,6 +11,8 @@
         <li><%= link_to item['name'], item["html_url"] %></li>
       <% end %>
     </ul>
+    <%= link_to 'Previous', "#{request.base_url}?q=#{ request.query_parameters["q"]}&commit=Previous" %> &emsp;
+    <%= link_to 'Next', "#{request.base_url}?q=#{ request.query_parameters["q"]}&commit=Next" %>
   <%  else %>
     <p>No results found.</p>
   <% end %>

@@ -1,15 +1,20 @@
 class V1::GithubController <  ApplicationController
+  include GithubPagination
 
   def search
     @query = params[:q]
-    @results = github_search(@query) if @query.present?
+    per_page = 30
+    if @query.present?
+      @results = github_search(@query, params[:commit], per_page)
+      session[:current_page] = @results[:page_number]
+    end
     render :search
   end
 
   private
 
-  def github_search(q)
-    Github::V1::Repositories::ListMatchedRepos.get_user_repositories(q) #service to get matching github repos
+  def github_search(q, action, per_page)
+    Github::V1::Repositories::ListMatchedRepos.get_repositories(q, custom_pagination(action,session[:current_page]), per_page) #service to get matching github repos
   end
 
 end
